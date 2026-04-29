@@ -1,0 +1,44 @@
+{
+  "name": "webhooks-ts",
+  "version": "1.0.0",
+  "description": "Reliable webhook delivery library with RabbitMQ",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "build:docker": "tsc -p tsconfig.docker.json",
+    "start:producer": "tsx examples/producer/index.ts",
+    "start:consumer-1": "tsx examples/consumer-1/app.ts",
+    "start:consumer-2": "tsx examples/consumer-2/app.ts",
+    "test": "jest --runInBand",
+    "test:unit": "jest --selectProjects unit --runInBand",
+    "test:e2e": "jest --selectProjects e2e --runInBand",
+    "test:watch": "jest --selectProjects unit --watch",
+    "test:coverage": "jest --coverage",
+    "build:docker": "tsc -p tsconfig.docker.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "amqplib": "^0.10.5",
+    "express": "^5.1.0",
+    "sqlite3": "^5.1.7",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@testcontainers/rabbitmq": "^10.18.0",
+    "@types/amqplib": "^0.10.7",
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^22.15.21",
+    "@types/supertest": "^6.0.3",
+    "better-sqlite3": "^11.10.0",
+    "@types/better-sqlite3": "^7.6.12",
+    "jest": "^30.0.0",
+    "supertest": "^7.1.1",
+    "ts-jest": "^29.4.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

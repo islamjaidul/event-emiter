@@ -1,0 +1,50 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  consumer-1:
+    build:
+      context: .
+      dockerfile: examples/consumer-1/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  consumer-2:
+    build:
+      context: .
+      dockerfile: examples/consumer-2/Dockerfile
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  producer:
+    build:
+      context: .
+      dockerfile: examples/producer/Dockerfile
+    environment:
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
+      DB_PATH: /data/webhooks.db
+    volumes:
+      - producer-data:/data
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      consumer-1:
+        condition: service_started
+      consumer-2:
+        condition: service_started
+
+volumes:
+  rabbitmq-data:
+  producer-data:
