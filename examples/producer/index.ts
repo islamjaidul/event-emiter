@@ -9,8 +9,7 @@ let counter = 1;
 
 async function bootstrap(): Promise<void> {
   await webhooks.register('order.created', 'http://consumer-1:3001/hook');
-  await webhooks.register('order.created', 'http://consumer-2:3002/hook');
-  await webhooks.register('order.shipped', 'http://consumer-1:3001/hook');
+  await webhooks.register('order.shipped', 'http://consumer-2:3002/hook');
 
   setInterval(() => {
     const payload = { orderId: counter++, createdAt: Date.now() };

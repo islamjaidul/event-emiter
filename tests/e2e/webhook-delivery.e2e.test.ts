@@ -24,8 +24,7 @@ describe('webhook delivery e2e', () => {
     });
 
     await webhooks.register('order.created', consumer1.url);
-    await webhooks.register('order.created', consumer2.url);
-    await webhooks.register('order.shipped', consumer1.url);
+    await webhooks.register('order.shipped', consumer2.url);
   });
 
   afterAll(async () => {
@@ -35,16 +34,16 @@ describe('webhook delivery e2e', () => {
     if (typeof broker !== 'undefined') await broker.stop();
   });
 
-  it('fans out to matching subscribers only', async () => {
+  it('routes each event to the intended consumer only', async () => {
     await webhooks.emit('order.created', { event: 'order.created', data: { orderId: 1 } });
-    await waitFor(() => consumer1.received.length >= 1 && consumer2.received.length >= 1);
+    await waitFor(() => consumer1.received.length >= 1);
 
     await webhooks.emit('order.shipped', { event: 'order.shipped', data: { orderId: 1 } });
-    await waitFor(() => consumer1.received.length >= 2);
+    await waitFor(() => consumer2.received.length >= 1);
 
     expect(consumer1.received.some((item) => item.event === 'order.created')).toBe(true);
-    expect(consumer1.received.some((item) => item.event === 'order.shipped')).toBe(true);
-    expect(consumer2.received.some((item) => item.event === 'order.created')).toBe(true);
-    expect(consumer2.received.some((item) => item.event === 'order.shipped')).toBe(false);
+    expect(consumer1.received.some((item) => item.event === 'order.shipped')).toBe(false);
+    expect(consumer2.received.some((item) => item.event === 'order.created')).toBe(false);
+    expect(consumer2.received.some((item) => item.event === 'order.shipped')).toBe(true);
   });
 });

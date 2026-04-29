@@ -20,3 +20,6 @@ Implement this correctly
     - Producer app can import it and use it as defined in requirement.md file
     - Consumer app can get the webhook message correctly
 - in src directory controller is unused in tests/unit is also. find and Remove all unused files and directories then run the test case 
+- One architectural issue, not all consumer should get same message, producer should know which consumer will get what message. fix this and update the test case accordingly.
+- test the full cycle from packaging -> import in producer -> consume the different message in two consumer to make sure no fan out
+- Update the readme.md file properly, so an engineer can understand step by step from the packaging -> import -> how to use using docker -> how to test -> how sqlite will be accessed -> what data is persisting in sqlite -> how consumer app getting messages in which way.
