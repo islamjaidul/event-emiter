@@ -1,5 +1,5 @@
 import Database from 'better-sqlite3';
-import { SubscriptionRepository } from '../../../src/repositories/subscription.repository';
+import { SubscriptionRepository } from '../../../src/infrastructure/persistence/sqlite/subscription.repository';
 
 class BetterSqliteAdapter {
   public constructor(private readonly db: Database.Database) {}

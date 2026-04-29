@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npm pack *)",
+      "Bash(tar -tzf webhooks-ts-1.0.0.tgz)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(node *)",
+      "Bash(npx jest *)"
+    ]
+  }
+}

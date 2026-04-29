@@ -1,11 +1,7 @@
-import type { IPublisher } from '../publisher';
-import type { ISubscriptionRepository } from '../repositories/subscription.repository';
-import { ServiceError, ValidationError } from '../types';
-
-export interface IWebhookService {
-  register(event: string, url: string): Promise<void>;
-  emit(event: string, payload: unknown): Promise<void>;
-}
+import type { IPublisher } from '../contracts/publisher';
+import type { ISubscriptionRepository } from '../contracts/subscription-repository';
+import type { IWebhookService } from '../contracts/webhook-service';
+import { ServiceError, ValidationError } from '../core/errors';
 
 export class WebhookService implements IWebhookService {
   public constructor(
@@ -21,7 +17,7 @@ export class WebhookService implements IWebhookService {
     let parsed: URL;
     try {
       parsed = new URL(url);
-    } catch (error) {
+    } catch {
       throw new ValidationError('Invalid URL format');
     }
 

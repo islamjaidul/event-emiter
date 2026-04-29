@@ -1,7 +1,7 @@
-import type { IPublisher } from '../../../src/publisher';
-import type { ISubscriptionRepository } from '../../../src/repositories/subscription.repository';
-import { WebhookService } from '../../../src/services/webhook.service';
-import { ValidationError } from '../../../src/types';
+import type { IPublisher } from '../../../src/contracts/publisher';
+import type { ISubscriptionRepository } from '../../../src/contracts/subscription-repository';
+import { WebhookService } from '../../../src/application/webhook.service';
+import { ValidationError } from '../../../src/core/errors';
 
 const makeRepo = (): jest.Mocked<ISubscriptionRepository> => ({
   add: jest.fn().mockResolvedValue(undefined),

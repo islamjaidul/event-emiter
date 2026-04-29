@@ -1,7 +1,7 @@
 import type { Channel, ConfirmChannel, ConsumeMessage } from 'amqplib';
-import { Worker } from '../../src/worker';
+import { Worker } from '../../src/infrastructure/amqp/worker';
 
-jest.mock('../../src/delivery', () => ({
+jest.mock('../../src/infrastructure/http/delivery', () => ({
   deliverHttp: jest.fn(async () => ({ success: true, statusCode: 200 })),
 }));
 

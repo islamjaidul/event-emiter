@@ -1,4 +1,4 @@
-import { deliverHttp } from '../../src/delivery';
+import { deliverHttp } from '../../src/infrastructure/http/delivery';
 
 describe('deliverHttp', () => {
   it('returns success for 2xx', async () => {

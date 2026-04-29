@@ -1,18 +1,14 @@
 import { randomUUID } from 'node:crypto';
-import type { SqliteDatabase } from '../db';
-import { RepositoryError, type Subscription } from '../types';
+import type { ISubscriptionRepository } from '../../../contracts/subscription-repository';
+import type { Subscription } from '../../../core/types';
+import { RepositoryError } from '../../../core/errors';
+import type { SqliteDatabase } from './db';
 
 interface SubscriptionRow {
   readonly id: string;
   readonly event: string;
   readonly url: string;
   readonly created_at: number;
-}
-
-export interface ISubscriptionRepository {
-  add(event: string, url: string): Promise<void>;
-  findByEvent(event: string): Promise<Subscription[]>;
-  remove(event: string, url: string): Promise<void>;
 }
 
 export class SubscriptionRepository implements ISubscriptionRepository {

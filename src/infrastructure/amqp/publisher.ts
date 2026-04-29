@@ -1,11 +1,9 @@
 import { randomUUID } from 'node:crypto';
 import type { ConfirmChannel, Options } from 'amqplib';
+import type { IPublisher } from '../../contracts/publisher';
+import type { JobHeaders } from '../../core/types';
+import { BrokerError } from '../../core/errors';
 import { EXCHANGE_WEBHOOKS, waitForDrain } from './broker';
-import { BrokerError, type JobHeaders } from './types';
-
-export interface IPublisher {
-  publish(event: string, url: string, payload: unknown): Promise<void>;
-}
 
 export class Publisher implements IPublisher {
   public constructor(

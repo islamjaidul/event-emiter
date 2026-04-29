@@ -4,9 +4,23 @@
   "description": "Reliable webhook delivery library with RabbitMQ",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "build:docker": "tsc -p tsconfig.docker.json",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "build:docker": "rm -rf dist && tsc -p tsconfig.docker.json",
     "start:producer": "tsx examples/producer/index.ts",
     "start:consumer-1": "tsx examples/consumer-1/app.ts",
     "start:consumer-2": "tsx examples/consumer-2/app.ts",
@@ -14,8 +28,7 @@
     "test:unit": "jest --selectProjects unit --runInBand",
     "test:e2e": "jest --selectProjects e2e --runInBand",
     "test:watch": "jest --selectProjects unit --watch",
-    "test:coverage": "jest --coverage",
-    "build:docker": "tsc -p tsconfig.docker.json"
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",

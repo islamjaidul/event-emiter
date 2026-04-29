@@ -13,3 +13,10 @@ Implement this correctly
     - Can it be use in the service with registration and emit
     - Can it be consume in consumer
     - Which directory is the webhook-ts library and how it will be packaged?
+- Package the library and use it in the producer app and test the whole life cycle if consumer can consume?
+- Organize the /src directory from the prespective of Software Architect who know how to structure reusable library for extendebility
+- Now make sure 100% 
+    - Library can be packaged like the industry standard
+    - Producer app can import it and use it as defined in requirement.md file
+    - Consumer app can get the webhook message correctly
+- in src directory controller is unused in tests/unit is also. find and Remove all unused files and directories then run the test case 

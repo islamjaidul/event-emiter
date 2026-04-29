@@ -1,5 +1,9 @@
 import { once } from 'node:events';
 import type { Channel, ConfirmChannel, ConsumeMessage, Options } from 'amqplib';
+import type { JobHeaders } from '../../core/types';
+import { BrokerError } from '../../core/errors';
+import { nextDelayMs } from '../../core/backoff';
+import { deliverHttp } from '../http/delivery';
 import {
   EXCHANGE_DLX,
   EXCHANGE_RETRY,
@@ -7,9 +11,6 @@ import {
   ensureMessage,
   waitForDrain,
 } from './broker';
-import { nextDelayMs } from './backoff';
-import { deliverHttp } from './delivery';
-import { BrokerError, type JobHeaders } from './types';
 
 interface WorkerConfig {
   readonly timeoutMs: number;

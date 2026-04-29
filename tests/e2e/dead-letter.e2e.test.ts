@@ -2,7 +2,7 @@ jest.setTimeout(180_000);
 
 import amqp from 'amqplib';
 import { createWebhooks, type WebhooksInstance } from '../../src';
-import { QUEUE_DLQ } from '../../src/broker';
+import { QUEUE_DLQ } from '../../src/infrastructure/amqp/broker';
 import { startTestBroker, type TestBroker } from './helpers/test-broker';
 import { startTestConsumer, type TestConsumer } from './helpers/test-consumer';
 import { waitFor } from './helpers/wait-for';

@@ -1,5 +1,5 @@
 import sqlite3 from 'sqlite3';
-import { BrokerError } from './types';
+import { BrokerError } from '../../../core/errors';
 
 export interface SqliteDatabase {
   run(sql: string, params?: ReadonlyArray<unknown>): Promise<void>;

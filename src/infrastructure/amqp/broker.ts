@@ -1,6 +1,6 @@
 import { once } from 'node:events';
 import amqp, { type Channel, type ChannelModel, type ConfirmChannel, type ConsumeMessage } from 'amqplib';
-import { BrokerError } from './types';
+import { BrokerError } from '../../core/errors';
 
 export const EXCHANGE_WEBHOOKS = 'webhooks.x';
 export const EXCHANGE_RETRY = 'webhooks.retry';

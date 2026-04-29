@@ -1,4 +1,4 @@
-import { nextDelayMs } from '../../src/backoff';
+import { nextDelayMs } from '../../src/core/backoff';
 
 describe('nextDelayMs', () => {
   it('follows schedule and cap', () => {
